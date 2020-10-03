@@ -46,11 +46,15 @@ insertVals() {
 		name := val[1]
 		var := val[2]
 		
-		Send, %name% {tab} 
-		sleep, delay
-		Send, %var% {tab}
-		sleep, delay
+		SendInput %name%
+		sleep delay
+		KeyWait ``, D
+		
+		SendInput {tab} %var% {tab}
+		sleep delay
 	}
+	
+	MsgBox DONE!
 	
 	return
 }
@@ -65,9 +69,12 @@ deleteVals() {
 		Send, {del}{tab}
 		sleep, delay
 	}
+	return
+}
+
 checkEsc() {
 	if GetKeyState("Esc") {
-	MsgBox BREAK!
+		MsgBox BREAK!
 		return true
+	}
 }
-}
