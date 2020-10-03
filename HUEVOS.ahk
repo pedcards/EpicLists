@@ -26,14 +26,14 @@ INIT:
 {
 	MsgBox, 35, INSERT VALUES?, Yes = Insert`nNo = Delete`nCancel = Quit
 	IfMsgBox, Yes
-		insertVals(delay)
+		insertVals()
 	IfMsgBox, No
-		deleteVals(delay)
+		deleteVals()
 	IfMsgBox, Cancel
 		ExitApp
 }
 
-insertVals(delay) {
+insertVals() {
 	global filein
 	loop, parse, filein, `n,`r
 	{
@@ -54,7 +54,7 @@ insertVals(delay) {
 	return
 }
 
-deleteVals(delay) {
+deleteVals() {
 	loop, 200
 	{
 		if GetKeyState("Esc") {
