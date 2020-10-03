@@ -34,13 +34,14 @@ INIT:
 }
 
 insertVals() {
-	global filein
+	global filein, delay
+	
 	loop, parse, filein, `n,`r
 	{
-		if GetKeyState("Esc") {
-			MsgBox BREAK!
+		if checkESC() {
 			break
 		}
+		
 		val:=StrSplit(A_LoopField,",")
 		name := val[1]
 		var := val[2]
@@ -55,9 +56,10 @@ insertVals() {
 }
 
 deleteVals() {
+	global delay
 	loop, 200
 	{
-		if GetKeyState("Esc") {
+		if checkEsc() {
 			break
 		}
 		Send, {del}{tab}
