@@ -65,6 +65,9 @@ deleteVals() {
 		Send, {del}{tab}
 		sleep, delay
 	}
+checkEsc() {
+	if GetKeyState("Esc") {
 	MsgBox BREAK!
-	return
+		return true
 }
+}
