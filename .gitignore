@@ -1,0 +1,5 @@
+devtfiles/
+*.egg
+*.exe
+*.bak
+Thumbs.db
