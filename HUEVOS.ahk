@@ -15,7 +15,7 @@ INIT:
 {
 	startDir :=
 	ext := "*.egg"
-	delay := 250
+	delay := 200
 	
 	FileSelectFile, fname, , %starDir%, HUEVOS - select EGG file, %ext%
 	FileRead, filein, %fname%
