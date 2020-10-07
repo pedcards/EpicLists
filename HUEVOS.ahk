@@ -29,7 +29,7 @@ INIT:
 }
 
 insertVals() {
-	global filein, delay
+	global filein, delay, acc_string
 	
 	loop, parse, filein, `n,`r
 	{
@@ -37,16 +37,14 @@ insertVals() {
 			break
 		}
 		
-		val:=StrSplit(A_LoopField,",")
-		name := val[1]
-		var := val[2]
+		if (A_Index=1) {																; first row	
+			acc:=parseCols()
+		}
 		
-		SendInput %name%
-		sleep delay
-		KeyWait ``, D
+		val:=A_LoopField
 		
-		SendInput {tab} %var% {tab}
-		sleep delay
+		sendRow(val,acc)
+		
 	}
 	
 	MsgBox DONE!
@@ -68,8 +66,57 @@ deleteVals() {
 }
 
 checkEsc() {
+/*	Check if {esc} is depressed :(
+	return 1 if true
+*/
 	if GetKeyState("Esc") {
 		MsgBox BREAK!
 		return true
 	}
+}
+
+parseCols() {
+	global acc_string
+	
+	col := getRow()
+	if InStr(acc_string,col.2) {
+		SendInput +{tab}
+		col.3 := checkfield()
+	}
+	
+	if (col.3=col.1) {
+		return col.2
+	} else {
+		return false
+	}
+}
+
+checkField() {
+	global delay
+	send ^c
+	sleep delay
+	return Clipboard
+}
+
+getRow() {
+	col1 := checkfield()
+	SendInput {tab}
+	col2 := checkfield()
+	
+	return [col1,col2]
+}
+
+sendRow(val,acc) {
+	global delay
+	
+	SendInput, %val% 
+	sleep delay
+	
+	SendInput, {tab} %acc% 
+	sleep delay
+	
+	SendInput {tab}
+	sleep delay
+	
+	return
 }
