@@ -1,7 +1,7 @@
 /*	HUEVOS
-	Human User Element Variables Organizer Script
+	Human User Element Variables Organizing Script
 	
-	Quickly populate or repopulate 
+	Quickly populate or repopulate an Epic Patient List
 */
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
