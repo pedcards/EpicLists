@@ -16,6 +16,7 @@ INIT:
 	startDir :=
 	ext := "*.egg"
 	delay := 200
+	acc_string := "Add/Remove Patients|Change Accessibility|Delete Patient List|Modify Properties|View Only"
 	
 	FileSelectFile, fname, , %starDir%, HUEVOS - select EGG file, %ext%
 	FileRead, filein, %fname%
