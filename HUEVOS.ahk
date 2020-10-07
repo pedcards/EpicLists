@@ -24,13 +24,7 @@ INIT:
 
 ^|::
 {
-	MsgBox, 35, INSERT VALUES?, Yes = Insert`nNo = Delete`nCancel = Quit
-	IfMsgBox, Yes
-		insertVals()
-	IfMsgBox, No
-		deleteVals()
-	IfMsgBox, Cancel
-		ExitApp
+	insertVals()
 }
 
 insertVals() {
